@@ -1,26 +1,50 @@
+
 import { StyleSheet, ViewStyle, TextStyle } from 'react-native';
 
 export const colors = {
-  primary: '#162456',    // Material Blue
-  secondary: '#193cb8',  // Darker Blue
-  accent: '#64B5F6',     // Light Blue
-  background: '#101824',  // Keeping dark background
-  backgroundAlt: '#162133',  // Keeping dark background
-  text: '#e3e3e3',       // Keeping light text
-  grey: '#90CAF9',       // Light Blue Grey
-  card: '#193cb8',       // Keeping dark card background
+  primary: '#D4AF37',      // Gold from medallion
+  secondary: '#B8860B',    // Darker gold
+  accent: '#FFD700',       // Bright gold
+  background: '#FAFAFA',   // Light background
+  backgroundAlt: '#FFFFFF', // White background
+  text: '#2C2C2C',         // Dark text for readability
+  textLight: '#666666',    // Light gray text
+  grey: '#E0E0E0',         // Light grey
+  card: '#FFFFFF',         // White card background
+  border: '#E0E0E0',       // Border color
+  success: '#4CAF50',      // Green
+  error: '#F44336',        // Red
+  shadow: 'rgba(0, 0, 0, 0.1)', // Shadow color
 };
 
 export const buttonStyles = StyleSheet.create({
-  instructionsButton: {
+  primary: {
     backgroundColor: colors.primary,
-    alignSelf: 'center',
-    width: '100%',
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  backButton: {
+  secondary: {
     backgroundColor: colors.backgroundAlt,
-    alignSelf: 'center',
-    width: '100%',
+    borderWidth: 1,
+    borderColor: colors.primary,
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  text: {
+    color: colors.text,
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  textSecondary: {
+    color: colors.primary,
+    fontSize: 16,
+    fontWeight: '600',
   },
 });
 
@@ -35,8 +59,6 @@ export const commonStyles = StyleSheet.create({
     backgroundColor: colors.background,
     width: '100%',
     height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   content: {
     flex: 1,
@@ -44,46 +66,93 @@ export const commonStyles = StyleSheet.create({
     justifyContent: 'center',
     maxWidth: 800,
     width: '100%',
+    paddingHorizontal: 20,
+  },
+  scrollContent: {
+    flexGrow: 1,
+    paddingHorizontal: 20,
+    paddingBottom: 100, // Space for bottom navigation
   },
   title: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: '800',
     textAlign: 'center',
     color: colors.text,
-    marginBottom: 10
+    marginBottom: 16,
+  },
+  subtitle: {
+    fontSize: 20,
+    fontWeight: '600',
+    textAlign: 'center',
+    color: colors.text,
+    marginBottom: 12,
   },
   text: {
     fontSize: 16,
-    fontWeight: '500',
+    fontWeight: '400',
     color: colors.text,
     marginBottom: 8,
     lineHeight: 24,
     textAlign: 'center',
   },
+  textLeft: {
+    fontSize: 16,
+    fontWeight: '400',
+    color: colors.text,
+    marginBottom: 8,
+    lineHeight: 24,
+    textAlign: 'left',
+  },
   section: {
     width: '100%',
     alignItems: 'center',
-    paddingHorizontal: 20,
-  },
-  buttonContainer: {
-    width: '100%',
-    alignItems: 'center',
-    paddingHorizontal: 20,
+    paddingVertical: 20,
   },
   card: {
-    backgroundColor: colors.backgroundAlt,
-    borderColor: colors.grey,
-    borderWidth: 1,
-    borderRadius: 10,
-    padding: 10,
+    backgroundColor: colors.card,
+    borderRadius: 12,
+    padding: 20,
     marginVertical: 8,
     width: '100%',
-    boxShadow: '0px 2px 3px rgba(0, 0, 0, 0.1)',
-    elevation: 2,
+    boxShadow: `0px 2px 8px ${colors.shadow}`,
+    elevation: 3,
   },
-  icon: {
-    width: 60,
-    height: 60,
-    tintColor: "white",
+  logo: {
+    width: 120,
+    height: 120,
+    marginBottom: 20,
+  },
+  logoLarge: {
+    width: 180,
+    height: 180,
+    marginBottom: 30,
+  },
+  bottomNavigation: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: colors.backgroundAlt,
+    borderTopWidth: 1,
+    borderTopColor: colors.border,
+    paddingBottom: 20,
+    paddingTop: 10,
+  },
+  navItem: {
+    flex: 1,
+    alignItems: 'center',
+    paddingVertical: 8,
+  },
+  navText: {
+    fontSize: 12,
+    color: colors.textLight,
+    marginTop: 4,
+    fontWeight: '500',
+  },
+  navTextActive: {
+    fontSize: 12,
+    color: colors.primary,
+    marginTop: 4,
+    fontWeight: '600',
   },
 });
