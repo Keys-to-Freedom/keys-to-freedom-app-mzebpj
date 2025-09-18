@@ -5,16 +5,16 @@ export const colors = {
   primary: '#D4AF37',      // Gold from medallion
   secondary: '#B8860B',    // Darker gold
   accent: '#FFD700',       // Bright gold
-  background: '#FAFAFA',   // Light background
-  backgroundAlt: '#FFFFFF', // White background
-  text: '#2C2C2C',         // Dark text for readability
-  textLight: '#666666',    // Light gray text
-  grey: '#E0E0E0',         // Light grey
-  card: '#FFFFFF',         // White card background
-  border: '#E0E0E0',       // Border color
+  background: '#2F2F2F',   // Anthracite background
+  backgroundAlt: '#3A3A3A', // Slightly lighter anthracite
+  text: '#FFFFFF',         // White text for contrast on dark background
+  textLight: '#CCCCCC',    // Light gray text
+  grey: '#555555',         // Darker grey for dark theme
+  card: '#3A3A3A',         // Dark card background
+  border: '#555555',       // Darker border color
   success: '#4CAF50',      // Green
   error: '#F44336',        // Red
-  shadow: 'rgba(0, 0, 0, 0.1)', // Shadow color
+  shadow: 'rgba(0, 0, 0, 0.3)', // Darker shadow for dark theme
 };
 
 export const buttonStyles = StyleSheet.create({
@@ -37,7 +37,7 @@ export const buttonStyles = StyleSheet.create({
     justifyContent: 'center',
   },
   text: {
-    color: colors.text,
+    color: colors.background, // Dark text on gold button
     fontSize: 16,
     fontWeight: '600',
   },
