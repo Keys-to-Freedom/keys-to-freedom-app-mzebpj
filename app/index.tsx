@@ -1,44 +1,45 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, View, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { commonStyles, colors, buttonStyles } from '../styles/commonStyles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import BottomNavigation from '../components/BottomNavigation';
+import EditableText from '../components/EditableText';
+import AdminPanel from '../components/AdminPanel';
+import { useContent } from '../hooks/useContent';
+import { useAuth } from '../hooks/useAuth';
 
 export default function HomeScreen() {
   const router = useRouter();
-
-  const features = [
-    {
-      title: 'Chat Community',
-      description: 'Tritt unseren exklusiven Kanälen bei und verbinde dich mit Gleichgesinnten auf dem Weg zur Freiheit.',
-      icon: 'chatbubbles',
-      route: '/chat',
-    },
-    {
-      title: 'Shop',
-      description: 'Entdecke Bücher, Kurse und Ressourcen, um deinen Weg zur persönlichen und finanziellen Freiheit zu beschleunigen.',
-      icon: 'storefront',
-      route: '/shop',
-    },
-    {
-      title: 'Mediathek',
-      description: 'Zugang zu exklusiven Inhalten, Artikeln, Videos und Audioaufnahmen unserer Community.',
-      icon: 'library',
-      route: '/media',
-    },
-    {
-      title: 'Kontakt',
-      description: 'Verbinde dich direkt mit unserem Team und Community-Leitern für persönliche Beratung.',
-      icon: 'mail',
-      route: '/contact',
-    },
-  ];
+  const { features } = useContent();
+  const { isAdmin } = useAuth();
+  const [showAdminPanel, setShowAdminPanel] = useState(false);
 
   return (
     <SafeAreaView style={commonStyles.container}>
       <ScrollView contentContainerStyle={commonStyles.scrollContent}>
+        {/* Admin Access */}
+        {isAdmin && (
+          <TouchableOpacity
+            style={{
+              position: 'absolute',
+              top: 10,
+              right: 10,
+              zIndex: 1000,
+              backgroundColor: colors.primary,
+              borderRadius: 20,
+              width: 40,
+              height: 40,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            onPress={() => setShowAdminPanel(true)}
+          >
+            <Text style={{ color: colors.background, fontSize: 18 }}>⚙️</Text>
+          </TouchableOpacity>
+        )}
+
         {/* Hero Section */}
         <View style={commonStyles.section}>
           <Image
@@ -46,26 +47,35 @@ export default function HomeScreen() {
             style={commonStyles.logoLarge}
             resizeMode="contain"
           />
-          <Text style={commonStyles.title}>Keys to Freedom</Text>
-          <Text style={commonStyles.text}>
-            Entfalte dein Potenzial und entdecke den Weg zur wahren Freiheit durch Wissen, Gemeinschaft und persönliches Wachstum.
-          </Text>
+          <EditableText id="home_title" style={commonStyles.title} />
+          <EditableText 
+            id="home_description" 
+            style={commonStyles.text}
+            multiline
+            placeholder="Beschreibung der App..."
+          />
         </View>
 
         {/* Welcome Message */}
         <View style={commonStyles.card}>
-          <Text style={commonStyles.subtitle}>Willkommen zu deiner Reise</Text>
-          <Text style={commonStyles.textLeft}>
-            Das ist mehr als nur eine App – es ist dein Tor zu einer Gemeinschaft, die sich dem Durchbrechen von Grenzen und dem Erreichen echter Unabhängigkeit verschrieben hat.
-          </Text>
-          <Text style={commonStyles.textLeft}>
-            Erkunde unsere Ressourcen, verbinde dich mit anderen und mache die ersten Schritte in Richtung der Freiheit, die du verdienst.
-          </Text>
+          <EditableText id="home_welcome_title" style={commonStyles.subtitle} />
+          <EditableText 
+            id="home_welcome_text1" 
+            style={commonStyles.textLeft}
+            multiline
+            placeholder="Willkommensnachricht Teil 1..."
+          />
+          <EditableText 
+            id="home_welcome_text2" 
+            style={commonStyles.textLeft}
+            multiline
+            placeholder="Willkommensnachricht Teil 2..."
+          />
         </View>
 
         {/* Features Grid */}
         <View style={commonStyles.section}>
-          <Text style={commonStyles.subtitle}>Funktionen entdecken</Text>
+          <EditableText id="home_features_title" style={commonStyles.subtitle} />
           {features.map((feature, index) => (
             <TouchableOpacity
               key={index}
@@ -105,10 +115,20 @@ export default function HomeScreen() {
             style={buttonStyles.primary}
             onPress={() => router.push('/chat')}
           >
-            <Text style={buttonStyles.text}>Der Community beitreten</Text>
+            <EditableText 
+              id="home_cta_button" 
+              style={buttonStyles.text}
+              placeholder="Call-to-Action Button Text..."
+            />
           </TouchableOpacity>
         </View>
       </ScrollView>
+
+      {/* Admin Panel */}
+      <AdminPanel 
+        isVisible={showAdminPanel}
+        onClose={() => setShowAdminPanel(false)}
+      />
 
       <BottomNavigation />
     </SafeAreaView>

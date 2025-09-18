@@ -5,11 +5,17 @@ import { commonStyles, colors, buttonStyles } from '../styles/commonStyles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import BottomNavigation from '../components/BottomNavigation';
 import SimpleBottomSheet from '../components/BottomSheet';
+import EditableText from '../components/EditableText';
+import AdminPanel from '../components/AdminPanel';
+import { useAuth } from '../hooks/useAuth';
 
 export default function ChatScreen() {
   const [isLoginVisible, setIsLoginVisible] = useState(false);
   const [email, setEmail] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isRegistering, setIsRegistering] = useState(false);
+  const [showAdminPanel, setShowAdminPanel] = useState(false);
+  
+  const { user, isLoading, error, login, register, logout, clearError, isAdmin } = useAuth();
 
   const channels = [
     {
@@ -38,24 +44,31 @@ export default function ChatScreen() {
     },
   ];
 
-  const handleLogin = () => {
-    if (!email) {
+  const handleAuth = async () => {
+    if (!email.trim()) {
       Alert.alert('Fehler', 'Bitte gib deine E-Mail-Adresse ein');
       return;
     }
-    if (!email.includes('@')) {
-      Alert.alert('Fehler', 'Bitte gib eine gültige E-Mail-Adresse ein');
-      return;
+
+    clearError();
+    const success = isRegistering 
+      ? await register(email)
+      : await login(email);
+
+    if (success) {
+      setIsLoginVisible(false);
+      setEmail('');
+      Alert.alert(
+        'Erfolgreich!', 
+        isRegistering 
+          ? 'Willkommen in der Keys to Freedom Community!' 
+          : 'Willkommen zurück!'
+      );
     }
-    
-    console.log('Login attempt with email:', email);
-    setIsLoggedIn(true);
-    setIsLoginVisible(false);
-    Alert.alert('Erfolgreich', 'Willkommen in der Keys to Freedom Community!');
   };
 
   const handleJoinChannel = (channelName: string) => {
-    if (!isLoggedIn) {
+    if (!user) {
       setIsLoginVisible(true);
       return;
     }
@@ -63,24 +76,62 @@ export default function ChatScreen() {
     Alert.alert('Beigetreten!', `Du bist dem Kanal ${channelName} beigetreten`);
   };
 
+  const handleLogout = () => {
+    Alert.alert(
+      'Abmelden',
+      'Möchtest du dich wirklich abmelden?',
+      [
+        { text: 'Abbrechen', style: 'cancel' },
+        { text: 'Abmelden', onPress: logout }
+      ]
+    );
+  };
+
   return (
     <SafeAreaView style={commonStyles.container}>
       <ScrollView contentContainerStyle={commonStyles.scrollContent}>
+        {/* Admin Access */}
+        {isAdmin && (
+          <TouchableOpacity
+            style={{
+              position: 'absolute',
+              top: 10,
+              right: 10,
+              zIndex: 1000,
+              backgroundColor: colors.primary,
+              borderRadius: 20,
+              width: 40,
+              height: 40,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            onPress={() => setShowAdminPanel(true)}
+          >
+            <Text style={{ color: colors.background, fontSize: 18 }}>⚙️</Text>
+          </TouchableOpacity>
+        )}
+
         {/* Header */}
         <View style={commonStyles.section}>
-          <Text style={commonStyles.title}>Community Chat</Text>
-          <Text style={commonStyles.text}>
-            Verbinde dich mit unserer Community durch exklusive Kanäle. Nimm an Diskussionen teil, teile Erkenntnisse und lerne von anderen auf ihrer Reise zur Freiheit.
-          </Text>
+          <EditableText id="chat_title" style={commonStyles.title} />
+          <EditableText 
+            id="chat_description" 
+            style={commonStyles.text}
+            multiline
+            placeholder="Chat-Beschreibung..."
+          />
         </View>
 
         {/* Login Status */}
-        {!isLoggedIn ? (
+        {!user ? (
           <View style={commonStyles.card}>
-            <Text style={commonStyles.subtitle}>An der Unterhaltung teilnehmen</Text>
-            <Text style={commonStyles.textLeft}>
-              Melde dich mit deiner E-Mail an, um Zugang zu unseren exklusiven Community-Kanälen zu erhalten und dich mit Gleichgesinnten zu verbinden.
-            </Text>
+            <EditableText id="chat_login_title" style={commonStyles.subtitle} />
+            <EditableText 
+              id="chat_login_text" 
+              style={commonStyles.textLeft}
+              multiline
+              placeholder="Login-Beschreibung..."
+            />
             <TouchableOpacity
               style={[buttonStyles.primary, { marginTop: 15 }]}
               onPress={() => setIsLoginVisible(true)}
@@ -90,16 +141,27 @@ export default function ChatScreen() {
           </View>
         ) : (
           <View style={commonStyles.card}>
-            <Text style={commonStyles.subtitle}>Willkommen zurück!</Text>
+            <Text style={commonStyles.subtitle}>Willkommen zurück, {user.name}!</Text>
             <Text style={commonStyles.textLeft}>
               Du bist mit der Keys to Freedom Community verbunden. Wähle unten einen Kanal aus, um teilzunehmen.
             </Text>
+            {isAdmin && (
+              <Text style={[commonStyles.textLeft, { color: colors.primary, fontWeight: 'bold' }]}>
+                👑 Admin-Berechtigung aktiv
+              </Text>
+            )}
+            <TouchableOpacity
+              style={[buttonStyles.secondary, { marginTop: 15 }]}
+              onPress={handleLogout}
+            >
+              <Text style={buttonStyles.textSecondary}>Abmelden</Text>
+            </TouchableOpacity>
           </View>
         )}
 
         {/* Channels List */}
         <View style={commonStyles.section}>
-          <Text style={commonStyles.subtitle}>Verfügbare Kanäle</Text>
+          <EditableText id="chat_channels_title" style={commonStyles.subtitle} />
           {channels.map((channel, index) => (
             <TouchableOpacity
               key={index}
@@ -144,28 +206,35 @@ export default function ChatScreen() {
         </View>
       </ScrollView>
 
-      {/* Login Bottom Sheet */}
+      {/* Login/Register Bottom Sheet */}
       <SimpleBottomSheet
         isVisible={isLoginVisible}
-        onClose={() => setIsLoginVisible(false)}
+        onClose={() => {
+          setIsLoginVisible(false);
+          clearError();
+        }}
       >
         <View style={{ padding: 20 }}>
           <Text style={[commonStyles.subtitle, { marginBottom: 20 }]}>
-            Keys to Freedom beitreten
+            {isRegistering ? 'Registrieren' : 'Anmelden'}
           </Text>
           <Text style={[commonStyles.textLeft, { marginBottom: 20 }]}>
-            Gib deine E-Mail-Adresse ein, um dich anzumelden oder ein neues Konto zu erstellen.
+            {isRegistering 
+              ? 'Erstelle ein neues Konto mit deiner E-Mail-Adresse.'
+              : 'Melde dich mit deiner E-Mail-Adresse an.'
+            }
           </Text>
           
           <TextInput
             style={{
               borderWidth: 1,
-              borderColor: colors.border,
+              borderColor: error ? colors.error : colors.border,
               borderRadius: 8,
               padding: 12,
               fontSize: 16,
-              marginBottom: 20,
+              marginBottom: 10,
               backgroundColor: colors.backgroundAlt,
+              color: colors.text,
             }}
             placeholder="Gib deine E-Mail-Adresse ein"
             placeholderTextColor={colors.textLight}
@@ -173,13 +242,36 @@ export default function ChatScreen() {
             onChangeText={setEmail}
             keyboardType="email-address"
             autoCapitalize="none"
+            editable={!isLoading}
           />
+
+          {error && (
+            <Text style={{ color: colors.error, fontSize: 14, marginBottom: 15 }}>
+              {error}
+            </Text>
+          )}
           
           <TouchableOpacity
-            style={buttonStyles.primary}
-            onPress={handleLogin}
+            style={[buttonStyles.primary, { opacity: isLoading ? 0.7 : 1 }]}
+            onPress={handleAuth}
+            disabled={isLoading}
           >
-            <Text style={buttonStyles.text}>Weiter</Text>
+            <Text style={buttonStyles.text}>
+              {isLoading ? 'Wird verarbeitet...' : (isRegistering ? 'Registrieren' : 'Anmelden')}
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={{ marginTop: 15 }}
+            onPress={() => setIsRegistering(!isRegistering)}
+            disabled={isLoading}
+          >
+            <Text style={[commonStyles.text, { fontSize: 14, color: colors.primary }]}>
+              {isRegistering 
+                ? 'Bereits ein Konto? Hier anmelden' 
+                : 'Noch kein Konto? Hier registrieren'
+              }
+            </Text>
           </TouchableOpacity>
           
           <Text style={[commonStyles.text, { fontSize: 14, marginTop: 15, color: colors.textLight }]}>
@@ -187,6 +279,12 @@ export default function ChatScreen() {
           </Text>
         </View>
       </SimpleBottomSheet>
+
+      {/* Admin Panel */}
+      <AdminPanel 
+        isVisible={showAdminPanel}
+        onClose={() => setShowAdminPanel(false)}
+      />
 
       <BottomNavigation />
     </SafeAreaView>
