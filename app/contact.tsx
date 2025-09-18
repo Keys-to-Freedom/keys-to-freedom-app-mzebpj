@@ -22,19 +22,19 @@ export default function ContactScreen() {
 
   const handleSubmit = () => {
     if (!formData.name || !formData.email || !formData.message) {
-      Alert.alert('Error', 'Please fill in all required fields');
+      Alert.alert('Fehler', 'Bitte fülle alle Pflichtfelder aus');
       return;
     }
 
     if (!formData.email.includes('@')) {
-      Alert.alert('Error', 'Please enter a valid email address');
+      Alert.alert('Fehler', 'Bitte gib eine gültige E-Mail-Adresse ein');
       return;
     }
 
     console.log('Contact form submitted:', formData);
     Alert.alert(
-      'Message Sent!',
-      'Thank you for reaching out. We will get back to you within 24 hours.',
+      'Nachricht gesendet!',
+      'Vielen Dank für deine Nachricht. Wir werden uns innerhalb von 24 Stunden bei dir melden.',
       [
         {
           text: 'OK',
@@ -54,11 +54,11 @@ export default function ContactScreen() {
   const handleDirectMessage = () => {
     console.log('Opening direct message channel');
     Alert.alert(
-      'Direct Message',
-      'This will open a private chat channel with our team. Would you like to continue?',
+      'Direktnachricht',
+      'Dies öffnet einen privaten Chat-Kanal mit unserem Team. Möchtest du fortfahren?',
       [
-        { text: 'Cancel', style: 'cancel' },
-        { text: 'Yes, Continue', onPress: () => console.log('Opening DM channel') },
+        { text: 'Abbrechen', style: 'cancel' },
+        { text: 'Ja, fortfahren', onPress: () => console.log('Opening DM channel') },
       ]
     );
   };
@@ -68,15 +68,15 @@ export default function ContactScreen() {
       <ScrollView contentContainerStyle={commonStyles.scrollContent}>
         {/* Header */}
         <View style={commonStyles.section}>
-          <Text style={commonStyles.title}>Get in Touch</Text>
+          <Text style={commonStyles.title}>Kontakt aufnehmen</Text>
           <Text style={commonStyles.text}>
-            Have questions about your journey to freedom? Need personalized guidance? We&apos;re here to help you every step of the way.
+            Hast du Fragen zu deiner Reise zur Freiheit? Benötigst du persönliche Beratung? Wir sind hier, um dir bei jedem Schritt zu helfen.
           </Text>
         </View>
 
         {/* Contact Methods */}
         <View style={commonStyles.section}>
-          <Text style={commonStyles.subtitle}>Contact Methods</Text>
+          <Text style={commonStyles.subtitle}>Kontaktmöglichkeiten</Text>
           
           <TouchableOpacity
             style={[commonStyles.card, { marginBottom: 15 }]}
@@ -95,11 +95,11 @@ export default function ContactScreen() {
                 <Text style={{ color: 'white', fontSize: 18 }}>💬</Text>
               </View>
               <Text style={[commonStyles.subtitle, { marginBottom: 0, textAlign: 'left' }]}>
-                Direct Message
+                Direktnachricht
               </Text>
             </View>
             <Text style={commonStyles.textLeft}>
-              Send a private message directly through our chat system for immediate assistance.
+              Sende eine private Nachricht direkt über unser Chat-System für sofortige Hilfe.
             </Text>
           </TouchableOpacity>
 
@@ -117,18 +117,18 @@ export default function ContactScreen() {
                 <Text style={{ color: 'white', fontSize: 18 }}>✉️</Text>
               </View>
               <Text style={[commonStyles.subtitle, { marginBottom: 0, textAlign: 'left' }]}>
-                Contact Form
+                Kontaktformular
               </Text>
             </View>
             <Text style={commonStyles.textLeft}>
-              Use the form below for detailed inquiries or feedback. We respond within 24 hours.
+              Nutze das untenstehende Formular für detaillierte Anfragen oder Feedback. Wir antworten innerhalb von 24 Stunden.
             </Text>
           </View>
         </View>
 
         {/* Contact Form */}
         <View style={commonStyles.section}>
-          <Text style={commonStyles.subtitle}>Send us a Message</Text>
+          <Text style={commonStyles.subtitle}>Sende uns eine Nachricht</Text>
           
           <View style={commonStyles.card}>
             <View style={{ marginBottom: 20 }}>
@@ -144,7 +144,7 @@ export default function ContactScreen() {
                   fontSize: 16,
                   backgroundColor: colors.backgroundAlt,
                 }}
-                placeholder="Your full name"
+                placeholder="Dein vollständiger Name"
                 placeholderTextColor={colors.textLight}
                 value={formData.name}
                 onChangeText={(value) => handleInputChange('name', value)}
@@ -153,7 +153,7 @@ export default function ContactScreen() {
 
             <View style={{ marginBottom: 20 }}>
               <Text style={[commonStyles.textLeft, { fontWeight: '600', marginBottom: 8 }]}>
-                Email *
+                E-Mail *
               </Text>
               <TextInput
                 style={{
@@ -164,7 +164,7 @@ export default function ContactScreen() {
                   fontSize: 16,
                   backgroundColor: colors.backgroundAlt,
                 }}
-                placeholder="your.email@example.com"
+                placeholder="deine.email@beispiel.de"
                 placeholderTextColor={colors.textLight}
                 value={formData.email}
                 onChangeText={(value) => handleInputChange('email', value)}
@@ -175,7 +175,7 @@ export default function ContactScreen() {
 
             <View style={{ marginBottom: 20 }}>
               <Text style={[commonStyles.textLeft, { fontWeight: '600', marginBottom: 8 }]}>
-                Subject
+                Betreff
               </Text>
               <TextInput
                 style={{
@@ -186,7 +186,7 @@ export default function ContactScreen() {
                   fontSize: 16,
                   backgroundColor: colors.backgroundAlt,
                 }}
-                placeholder="What is this about?"
+                placeholder="Worum geht es?"
                 placeholderTextColor={colors.textLight}
                 value={formData.subject}
                 onChangeText={(value) => handleInputChange('subject', value)}
@@ -195,7 +195,7 @@ export default function ContactScreen() {
 
             <View style={{ marginBottom: 20 }}>
               <Text style={[commonStyles.textLeft, { fontWeight: '600', marginBottom: 8 }]}>
-                Message *
+                Nachricht *
               </Text>
               <TextInput
                 style={{
@@ -208,7 +208,7 @@ export default function ContactScreen() {
                   minHeight: 120,
                   textAlignVertical: 'top',
                 }}
-                placeholder="Tell us how we can help you on your journey to freedom..."
+                placeholder="Erzähle uns, wie wir dir auf deiner Reise zur Freiheit helfen können..."
                 placeholderTextColor={colors.textLight}
                 value={formData.message}
                 onChangeText={(value) => handleInputChange('message', value)}
@@ -221,39 +221,39 @@ export default function ContactScreen() {
               style={buttonStyles.primary}
               onPress={handleSubmit}
             >
-              <Text style={buttonStyles.text}>Send Message</Text>
+              <Text style={buttonStyles.text}>Nachricht senden</Text>
             </TouchableOpacity>
           </View>
         </View>
 
         {/* Additional Info */}
         <View style={commonStyles.card}>
-          <Text style={commonStyles.subtitle}>Why Contact Us?</Text>
+          <Text style={commonStyles.subtitle}>Warum uns kontaktieren?</Text>
           <View style={{ alignItems: 'flex-start' }}>
-            <Text style={commonStyles.textLeft}>• Get personalized guidance on your freedom journey</Text>
-            <Text style={commonStyles.textLeft}>• Ask questions about our books and courses</Text>
-            <Text style={commonStyles.textLeft}>• Request speaking engagements or collaborations</Text>
-            <Text style={commonStyles.textLeft}>• Share your success story with our community</Text>
-            <Text style={commonStyles.textLeft}>• Report technical issues or suggest improvements</Text>
+            <Text style={commonStyles.textLeft}>• Persönliche Beratung auf deiner Freiheitsreise erhalten</Text>
+            <Text style={commonStyles.textLeft}>• Fragen zu unseren Büchern und Kursen stellen</Text>
+            <Text style={commonStyles.textLeft}>• Vorträge oder Kooperationen anfragen</Text>
+            <Text style={commonStyles.textLeft}>• Deine Erfolgsgeschichte mit unserer Community teilen</Text>
+            <Text style={commonStyles.textLeft}>• Technische Probleme melden oder Verbesserungen vorschlagen</Text>
           </View>
         </View>
 
         {/* Response Time */}
         <View style={commonStyles.card}>
-          <Text style={commonStyles.subtitle}>Response Time</Text>
+          <Text style={commonStyles.subtitle}>Antwortzeit</Text>
           <Text style={commonStyles.textLeft}>
-            We typically respond to all inquiries within 24 hours during business days. For urgent matters, please use the direct message feature for faster assistance.
+            Wir antworten normalerweise innerhalb von 24 Stunden an Werktagen auf alle Anfragen. Für dringende Angelegenheiten nutze bitte die Direktnachricht-Funktion für schnellere Hilfe.
           </Text>
           <Text style={[commonStyles.textLeft, { fontSize: 14, color: colors.textLight, marginTop: 10 }]}>
-            Business hours: Monday - Friday, 9:00 AM - 6:00 PM (CET)
+            Geschäftszeiten: Montag - Freitag, 9:00 - 18:00 Uhr (MEZ)
           </Text>
         </View>
 
         {/* Privacy Notice */}
         <View style={commonStyles.card}>
-          <Text style={commonStyles.subtitle}>Privacy & Data Protection</Text>
+          <Text style={commonStyles.subtitle}>Datenschutz & Datenschutz</Text>
           <Text style={commonStyles.textLeft}>
-            Your personal information is protected according to GDPR guidelines. We only use your contact details to respond to your inquiry and will never share them with third parties.
+            Deine persönlichen Informationen werden gemäß den DSGVO-Richtlinien geschützt. Wir verwenden deine Kontaktdaten nur zur Beantwortung deiner Anfrage und geben sie niemals an Dritte weiter.
           </Text>
         </View>
       </ScrollView>

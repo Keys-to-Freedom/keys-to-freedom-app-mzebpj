@@ -12,25 +12,25 @@ export default function HomeScreen() {
   const features = [
     {
       title: 'Chat Community',
-      description: 'Join our exclusive channels and connect with like-minded individuals on the journey to freedom.',
+      description: 'Tritt unseren exklusiven Kanälen bei und verbinde dich mit Gleichgesinnten auf dem Weg zur Freiheit.',
       icon: 'chatbubbles',
       route: '/chat',
     },
     {
       title: 'Shop',
-      description: 'Discover books, courses, and resources to accelerate your path to personal and financial freedom.',
+      description: 'Entdecke Bücher, Kurse und Ressourcen, um deinen Weg zur persönlichen und finanziellen Freiheit zu beschleunigen.',
       icon: 'storefront',
       route: '/shop',
     },
     {
-      title: 'Media Library',
-      description: 'Access exclusive content, articles, videos, and audio recordings from our community.',
+      title: 'Mediathek',
+      description: 'Zugang zu exklusiven Inhalten, Artikeln, Videos und Audioaufnahmen unserer Community.',
       icon: 'library',
       route: '/media',
     },
     {
-      title: 'Get in Touch',
-      description: 'Connect directly with our team and community leaders for personalized guidance.',
+      title: 'Kontakt',
+      description: 'Verbinde dich direkt mit unserem Team und Community-Leitern für persönliche Beratung.',
       icon: 'mail',
       route: '/contact',
     },
@@ -48,24 +48,24 @@ export default function HomeScreen() {
           />
           <Text style={commonStyles.title}>Keys to Freedom</Text>
           <Text style={commonStyles.text}>
-            Unlock your potential and discover the path to true freedom through knowledge, community, and personal growth.
+            Entfalte dein Potenzial und entdecke den Weg zur wahren Freiheit durch Wissen, Gemeinschaft und persönliches Wachstum.
           </Text>
         </View>
 
         {/* Welcome Message */}
         <View style={commonStyles.card}>
-          <Text style={commonStyles.subtitle}>Welcome to Your Journey</Text>
+          <Text style={commonStyles.subtitle}>Willkommen zu deiner Reise</Text>
           <Text style={commonStyles.textLeft}>
-            This is more than just an app – it&apos;s your gateway to a community dedicated to breaking free from limitations and achieving genuine independence.
+            Das ist mehr als nur eine App – es ist dein Tor zu einer Gemeinschaft, die sich dem Durchbrechen von Grenzen und dem Erreichen echter Unabhängigkeit verschrieben hat.
           </Text>
           <Text style={commonStyles.textLeft}>
-            Explore our resources, connect with others, and take the first steps toward the freedom you deserve.
+            Erkunde unsere Ressourcen, verbinde dich mit anderen und mache die ersten Schritte in Richtung der Freiheit, die du verdienst.
           </Text>
         </View>
 
         {/* Features Grid */}
         <View style={commonStyles.section}>
-          <Text style={commonStyles.subtitle}>Explore Features</Text>
+          <Text style={commonStyles.subtitle}>Funktionen entdecken</Text>
           {features.map((feature, index) => (
             <TouchableOpacity
               key={index}
@@ -105,7 +105,7 @@ export default function HomeScreen() {
             style={buttonStyles.primary}
             onPress={() => router.push('/chat')}
           >
-            <Text style={buttonStyles.text}>Join the Community</Text>
+            <Text style={buttonStyles.text}>Der Community beitreten</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>

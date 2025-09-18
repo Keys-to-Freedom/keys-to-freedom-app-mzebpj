@@ -9,66 +9,66 @@ export default function MediaScreen() {
   const [selectedCategory, setSelectedCategory] = useState('all');
 
   const categories = [
-    { id: 'all', name: 'All Content' },
-    { id: 'articles', name: 'Articles' },
+    { id: 'all', name: 'Alle Inhalte' },
+    { id: 'articles', name: 'Artikel' },
     { id: 'videos', name: 'Videos' },
     { id: 'audio', name: 'Audio' },
-    { id: 'galleries', name: 'Galleries' },
+    { id: 'galleries', name: 'Galerien' },
   ];
 
   const mediaContent = [
     {
       id: 1,
-      title: 'The Psychology of Freedom',
+      title: 'Die Psychologie der Freiheit',
       type: 'articles',
-      description: 'Understanding the mental barriers that prevent us from achieving true freedom.',
+      description: 'Verstehe die mentalen Barrieren, die uns daran hindern, wahre Freiheit zu erreichen.',
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop',
-      duration: '8 min read',
+      duration: '8 Min. Lesezeit',
       date: '2024-01-15',
     },
     {
       id: 2,
-      title: 'Breaking Free: A Live Reading',
+      title: 'Befreiung: Eine Live-Lesung',
       type: 'videos',
-      description: 'Exclusive video recording of a live reading session discussing key concepts.',
+      description: 'Exklusive Videoaufzeichnung einer Live-Lesung mit Diskussion wichtiger Konzepte.',
       image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop',
-      duration: '45 min',
+      duration: '45 Min.',
       date: '2024-01-10',
     },
     {
       id: 3,
-      title: 'Financial Independence Strategies',
+      title: 'Strategien für finanzielle Unabhängigkeit',
       type: 'audio',
-      description: 'Podcast episode covering practical steps to achieve financial freedom.',
+      description: 'Podcast-Episode mit praktischen Schritten zur finanziellen Freiheit.',
       image: 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=400&h=300&fit=crop',
-      duration: '32 min',
+      duration: '32 Min.',
       date: '2024-01-08',
     },
     {
       id: 4,
-      title: 'Journey to Freedom Gallery',
+      title: 'Reise zur Freiheit Galerie',
       type: 'galleries',
-      description: 'Visual documentation of transformation stories from our community.',
+      description: 'Visuelle Dokumentation von Transformationsgeschichten unserer Community.',
       image: 'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=300&fit=crop',
-      duration: '24 images',
+      duration: '24 Bilder',
       date: '2024-01-05',
     },
     {
       id: 5,
-      title: 'Mindset Transformation Workshop',
+      title: 'Mindset-Transformations-Workshop',
       type: 'videos',
-      description: 'Complete workshop recording on developing a freedom-oriented mindset.',
+      description: 'Komplette Workshop-Aufzeichnung zur Entwicklung einer freiheitsorientierten Denkweise.',
       image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=300&fit=crop',
-      duration: '1h 15min',
+      duration: '1h 15Min.',
       date: '2024-01-03',
     },
     {
       id: 6,
-      title: 'Building Wealth from Zero',
+      title: 'Vermögensaufbau von Null',
       type: 'articles',
-      description: 'Step-by-step guide for creating wealth without initial capital.',
+      description: 'Schritt-für-Schritt-Anleitung zum Vermögensaufbau ohne Startkapital.',
       image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop',
-      duration: '12 min read',
+      duration: '12 Min. Lesezeit',
       date: '2024-01-01',
     },
   ];
@@ -97,37 +97,37 @@ export default function MediaScreen() {
       <ScrollView contentContainerStyle={commonStyles.scrollContent}>
         {/* Header */}
         <View style={commonStyles.section}>
-          <Text style={commonStyles.title}>Media Library</Text>
+          <Text style={commonStyles.title}>Mediathek</Text>
           <Text style={commonStyles.text}>
-            Access exclusive articles, videos, audio content, and image galleries. All content is carefully curated to support your journey to freedom.
+            Zugang zu exklusiven Artikeln, Videos, Audio-Inhalten und Bildergalerien. Alle Inhalte sind sorgfältig kuratiert, um deine Reise zur Freiheit zu unterstützen.
           </Text>
         </View>
 
         {/* Featured Content */}
         <View style={commonStyles.card}>
-          <Text style={commonStyles.subtitle}>Latest Release</Text>
+          <Text style={commonStyles.subtitle}>Neueste Veröffentlichung</Text>
           <Image
             source={{ uri: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=200&fit=crop' }}
             style={{ width: '100%', height: 150, borderRadius: 8, marginBottom: 12 }}
             resizeMode="cover"
           />
           <Text style={[commonStyles.subtitle, { fontSize: 16, marginBottom: 8, textAlign: 'left' }]}>
-            Breaking Free: A Live Reading
+            Befreiung: Eine Live-Lesung
           </Text>
           <Text style={commonStyles.textLeft}>
-            Join me for an exclusive live reading session where we explore the fundamental principles of achieving true freedom in today&apos;s world.
+            Begleite mich zu einer exklusiven Live-Lesung, in der wir die grundlegenden Prinzipien zur Erreichung wahrer Freiheit in der heutigen Welt erkunden.
           </Text>
           <TouchableOpacity
             style={[buttonStyles.primary, { marginTop: 15 }]}
             onPress={() => handleContentPress(mediaContent[1])}
           >
-            <Text style={buttonStyles.text}>Watch Now</Text>
+            <Text style={buttonStyles.text}>Jetzt ansehen</Text>
           </TouchableOpacity>
         </View>
 
         {/* Category Filter */}
         <View style={commonStyles.section}>
-          <Text style={commonStyles.subtitle}>Browse Content</Text>
+          <Text style={commonStyles.subtitle}>Inhalte durchsuchen</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginVertical: 10 }}>
             {categories.map((category) => (
               <TouchableOpacity
@@ -185,7 +185,7 @@ export default function MediaScreen() {
                       {item.duration}
                     </Text>
                     <Text style={{ fontSize: 12, color: colors.textLight }}>
-                      {new Date(item.date).toLocaleDateString()}
+                      {new Date(item.date).toLocaleDateString('de-DE')}
                     </Text>
                   </View>
                 </View>
@@ -196,26 +196,26 @@ export default function MediaScreen() {
 
         {/* Upload Info */}
         <View style={commonStyles.card}>
-          <Text style={commonStyles.subtitle}>Content Updates</Text>
+          <Text style={commonStyles.subtitle}>Inhalts-Updates</Text>
           <Text style={commonStyles.textLeft}>
-            New content is added regularly to keep you inspired and informed on your freedom journey. Enable notifications to never miss an update.
+            Neue Inhalte werden regelmäßig hinzugefügt, um dich auf deiner Freiheitsreise inspiriert und informiert zu halten. Aktiviere Benachrichtigungen, um kein Update zu verpassen.
           </Text>
           <View style={{ alignItems: 'flex-start', marginTop: 10 }}>
-            <Text style={commonStyles.textLeft}>• Weekly articles and insights</Text>
-            <Text style={commonStyles.textLeft}>• Monthly video recordings</Text>
-            <Text style={commonStyles.textLeft}>• Exclusive audio content</Text>
-            <Text style={commonStyles.textLeft}>• Community photo galleries</Text>
+            <Text style={commonStyles.textLeft}>• Wöchentliche Artikel und Einblicke</Text>
+            <Text style={commonStyles.textLeft}>• Monatliche Videoaufzeichnungen</Text>
+            <Text style={commonStyles.textLeft}>• Exklusive Audio-Inhalte</Text>
+            <Text style={commonStyles.textLeft}>• Community-Fotogalerien</Text>
           </View>
         </View>
 
         {/* Video Player Info */}
         <View style={commonStyles.card}>
-          <Text style={commonStyles.subtitle}>Built-in Media Player</Text>
+          <Text style={commonStyles.subtitle}>Integrierter Media-Player</Text>
           <Text style={commonStyles.textLeft}>
-            All videos and audio content can be played directly within the app. No need for external players or downloads.
+            Alle Videos und Audio-Inhalte können direkt in der App abgespielt werden. Keine externen Player oder Downloads erforderlich.
           </Text>
           <Text style={[commonStyles.textLeft, { fontSize: 14, color: colors.textLight, marginTop: 10 }]}>
-            Note: Video playback requires an internet connection for the best experience.
+            Hinweis: Videowiedergabe erfordert eine Internetverbindung für die beste Erfahrung.
           </Text>
         </View>
       </ScrollView>

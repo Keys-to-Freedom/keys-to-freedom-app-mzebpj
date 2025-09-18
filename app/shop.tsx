@@ -9,64 +9,64 @@ export default function ShopScreen() {
   const [selectedCategory, setSelectedCategory] = useState('all');
 
   const categories = [
-    { id: 'all', name: 'All Products' },
-    { id: 'books', name: 'Books' },
-    { id: 'courses', name: 'Courses' },
-    { id: 'resources', name: 'Resources' },
+    { id: 'all', name: 'Alle Produkte' },
+    { id: 'books', name: 'Bücher' },
+    { id: 'courses', name: 'Kurse' },
+    { id: 'resources', name: 'Ressourcen' },
   ];
 
   const products = [
     {
       id: 1,
-      name: 'Keys to Freedom - The Complete Guide',
+      name: 'Keys to Freedom - Der komplette Leitfaden',
       price: '€29.99',
       category: 'books',
-      description: 'A comprehensive guide to achieving personal and financial freedom.',
+      description: 'Ein umfassender Leitfaden zum Erreichen persönlicher und finanzieller Freiheit.',
       image: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=300&h=400&fit=crop',
       featured: true,
     },
     {
       id: 2,
-      name: 'Freedom Mindset Masterclass',
+      name: 'Freiheits-Mindset Masterclass',
       price: '€149.99',
       category: 'courses',
-      description: 'Transform your thinking and unlock your potential with this intensive course.',
+      description: 'Transformiere dein Denken und entfalte dein Potenzial mit diesem intensiven Kurs.',
       image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=300&h=400&fit=crop',
       featured: false,
     },
     {
       id: 3,
-      name: 'Financial Independence Workbook',
+      name: 'Finanzielle Unabhängigkeit Arbeitsbuch',
       price: '€19.99',
       category: 'resources',
-      description: 'Practical exercises and templates for building wealth and achieving financial freedom.',
+      description: 'Praktische Übungen und Vorlagen zum Aufbau von Wohlstand und finanzieller Freiheit.',
       image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=300&h=400&fit=crop',
       featured: false,
     },
     {
       id: 4,
-      name: 'Breaking Mental Barriers',
+      name: 'Mentale Barrieren durchbrechen',
       price: '€24.99',
       category: 'books',
-      description: 'Overcome limiting beliefs and create the life you truly desire.',
+      description: 'Überwinde limitierende Glaubenssätze und erschaffe das Leben, das du wirklich willst.',
       image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&h=400&fit=crop',
       featured: true,
     },
     {
       id: 5,
-      name: 'Entrepreneur&apos;s Freedom Blueprint',
+      name: 'Unternehmer-Freiheits-Blueprint',
       price: '€199.99',
       category: 'courses',
-      description: 'Step-by-step system for building a business that gives you true freedom.',
+      description: 'Schritt-für-Schritt-System zum Aufbau eines Unternehmens, das dir wahre Freiheit gibt.',
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=400&fit=crop',
       featured: false,
     },
     {
       id: 6,
-      name: 'Daily Freedom Journal',
+      name: 'Tägliches Freiheits-Journal',
       price: '€15.99',
       category: 'resources',
-      description: 'Track your progress and maintain focus on your freedom journey.',
+      description: 'Verfolge deinen Fortschritt und bleibe fokussiert auf deiner Reise zur Freiheit.',
       image: 'https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=300&h=400&fit=crop',
       featured: false,
     },
@@ -81,15 +81,15 @@ export default function ShopScreen() {
   const handlePurchase = (productName: string, price: string) => {
     console.log('Purchase initiated for:', productName, price);
     Alert.alert(
-      'Purchase',
-      `Would you like to purchase "${productName}" for ${price}?`,
+      'Kauf',
+      `Möchtest du "${productName}" für ${price} kaufen?`,
       [
-        { text: 'Cancel', style: 'cancel' },
+        { text: 'Abbrechen', style: 'cancel' },
         { 
-          text: 'Buy Now', 
+          text: 'Jetzt kaufen', 
           onPress: () => {
             console.log('Redirecting to payment...');
-            Alert.alert('Payment', 'Redirecting to secure payment gateway...');
+            Alert.alert('Zahlung', 'Weiterleitung zum sicheren Zahlungsgateway...');
           }
         },
       ]
@@ -101,15 +101,15 @@ export default function ShopScreen() {
       <ScrollView contentContainerStyle={commonStyles.scrollContent}>
         {/* Header */}
         <View style={commonStyles.section}>
-          <Text style={commonStyles.title}>Freedom Shop</Text>
+          <Text style={commonStyles.title}>Freiheits-Shop</Text>
           <Text style={commonStyles.text}>
-            Discover books, courses, and resources designed to accelerate your journey to personal and financial freedom.
+            Entdecke Bücher, Kurse und Ressourcen, die deine Reise zur persönlichen und finanziellen Freiheit beschleunigen.
           </Text>
         </View>
 
         {/* Featured Products */}
         <View style={commonStyles.section}>
-          <Text style={commonStyles.subtitle}>Featured Products</Text>
+          <Text style={commonStyles.subtitle}>Empfohlene Produkte</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginVertical: 10 }}>
             {featuredProducts.map((product) => (
               <View key={product.id} style={{
@@ -140,7 +140,7 @@ export default function ShopScreen() {
                     style={[buttonStyles.primary, { paddingHorizontal: 16, paddingVertical: 8 }]}
                     onPress={() => handlePurchase(product.name, product.price)}
                   >
-                    <Text style={[buttonStyles.text, { fontSize: 14 }]}>Buy Now</Text>
+                    <Text style={[buttonStyles.text, { fontSize: 14 }]}>Jetzt kaufen</Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -150,7 +150,7 @@ export default function ShopScreen() {
 
         {/* Category Filter */}
         <View style={commonStyles.section}>
-          <Text style={commonStyles.subtitle}>Browse by Category</Text>
+          <Text style={commonStyles.subtitle}>Nach Kategorie durchsuchen</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginVertical: 10 }}>
             {categories.map((category) => (
               <TouchableOpacity
@@ -202,7 +202,7 @@ export default function ShopScreen() {
                       style={[buttonStyles.primary, { paddingHorizontal: 16, paddingVertical: 8 }]}
                       onPress={() => handlePurchase(product.name, product.price)}
                     >
-                      <Text style={[buttonStyles.text, { fontSize: 14 }]}>Buy Now</Text>
+                      <Text style={[buttonStyles.text, { fontSize: 14 }]}>Jetzt kaufen</Text>
                     </TouchableOpacity>
                   </View>
                 </View>
@@ -213,23 +213,23 @@ export default function ShopScreen() {
 
         {/* My Books Section */}
         <View style={commonStyles.card}>
-          <Text style={commonStyles.subtitle}>My Books Collection</Text>
+          <Text style={commonStyles.subtitle}>Meine Büchersammlung</Text>
           <Text style={commonStyles.textLeft}>
-            Explore my personal collection of books that have shaped my understanding of freedom and success. Each book comes with exclusive insights and discussion guides.
+            Erkunde meine persönliche Sammlung von Büchern, die mein Verständnis von Freiheit und Erfolg geprägt haben. Jedes Buch kommt mit exklusiven Einblicken und Diskussionsleitfäden.
           </Text>
           <TouchableOpacity
             style={[buttonStyles.secondary, { marginTop: 15 }]}
             onPress={() => setSelectedCategory('books')}
           >
-            <Text style={buttonStyles.textSecondary}>View All Books</Text>
+            <Text style={buttonStyles.textSecondary}>Alle Bücher anzeigen</Text>
           </TouchableOpacity>
         </View>
 
         {/* Payment Info */}
         <View style={commonStyles.card}>
-          <Text style={commonStyles.subtitle}>Secure Payment</Text>
+          <Text style={commonStyles.subtitle}>Sichere Zahlung</Text>
           <Text style={commonStyles.textLeft}>
-            We accept PayPal, credit cards, and other secure payment methods. All transactions are encrypted and protected.
+            Wir akzeptieren PayPal, Kreditkarten und andere sichere Zahlungsmethoden. Alle Transaktionen sind verschlüsselt und geschützt.
           </Text>
           <View style={{ flexDirection: 'row', marginTop: 10 }}>
             <Text style={{ marginRight: 15, fontSize: 24 }}>💳</Text>

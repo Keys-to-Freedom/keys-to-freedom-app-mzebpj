@@ -13,45 +13,45 @@ export default function ChatScreen() {
 
   const channels = [
     {
-      name: 'General Discussion',
-      description: 'Main community channel for general conversations',
+      name: 'Allgemeine Diskussion',
+      description: 'Haupt-Community-Kanal für allgemeine Gespräche',
       members: 1247,
-      lastMessage: '2 minutes ago',
+      lastMessage: 'vor 2 Minuten',
     },
     {
-      name: 'Freedom Strategies',
-      description: 'Share and discuss strategies for achieving freedom',
+      name: 'Freiheits-Strategien',
+      description: 'Teile und diskutiere Strategien zum Erreichen von Freiheit',
       members: 892,
-      lastMessage: '15 minutes ago',
+      lastMessage: 'vor 15 Minuten',
     },
     {
-      name: 'Book Club',
-      description: 'Discuss recommended books and readings',
+      name: 'Buchclub',
+      description: 'Diskutiere empfohlene Bücher und Lektüren',
       members: 634,
-      lastMessage: '1 hour ago',
+      lastMessage: 'vor 1 Stunde',
     },
     {
-      name: 'Success Stories',
-      description: 'Share your journey and celebrate victories',
+      name: 'Erfolgsgeschichten',
+      description: 'Teile deine Reise und feiere Erfolge',
       members: 445,
-      lastMessage: '3 hours ago',
+      lastMessage: 'vor 3 Stunden',
     },
   ];
 
   const handleLogin = () => {
     if (!email) {
-      Alert.alert('Error', 'Please enter your email address');
+      Alert.alert('Fehler', 'Bitte gib deine E-Mail-Adresse ein');
       return;
     }
     if (!email.includes('@')) {
-      Alert.alert('Error', 'Please enter a valid email address');
+      Alert.alert('Fehler', 'Bitte gib eine gültige E-Mail-Adresse ein');
       return;
     }
     
     console.log('Login attempt with email:', email);
     setIsLoggedIn(true);
     setIsLoginVisible(false);
-    Alert.alert('Success', 'Welcome to the Keys to Freedom community!');
+    Alert.alert('Erfolgreich', 'Willkommen in der Keys to Freedom Community!');
   };
 
   const handleJoinChannel = (channelName: string) => {
@@ -60,7 +60,7 @@ export default function ChatScreen() {
       return;
     }
     console.log('Joining channel:', channelName);
-    Alert.alert('Joined!', `You have joined the ${channelName} channel`);
+    Alert.alert('Beigetreten!', `Du bist dem Kanal ${channelName} beigetreten`);
   };
 
   return (
@@ -70,36 +70,36 @@ export default function ChatScreen() {
         <View style={commonStyles.section}>
           <Text style={commonStyles.title}>Community Chat</Text>
           <Text style={commonStyles.text}>
-            Connect with our community through exclusive channels. Join discussions, share insights, and learn from others on their journey to freedom.
+            Verbinde dich mit unserer Community durch exklusive Kanäle. Nimm an Diskussionen teil, teile Erkenntnisse und lerne von anderen auf ihrer Reise zur Freiheit.
           </Text>
         </View>
 
         {/* Login Status */}
         {!isLoggedIn ? (
           <View style={commonStyles.card}>
-            <Text style={commonStyles.subtitle}>Join the Conversation</Text>
+            <Text style={commonStyles.subtitle}>An der Unterhaltung teilnehmen</Text>
             <Text style={commonStyles.textLeft}>
-              Sign in with your email to access our exclusive community channels and start connecting with like-minded individuals.
+              Melde dich mit deiner E-Mail an, um Zugang zu unseren exklusiven Community-Kanälen zu erhalten und dich mit Gleichgesinnten zu verbinden.
             </Text>
             <TouchableOpacity
               style={[buttonStyles.primary, { marginTop: 15 }]}
               onPress={() => setIsLoginVisible(true)}
             >
-              <Text style={buttonStyles.text}>Sign In / Register</Text>
+              <Text style={buttonStyles.text}>Anmelden / Registrieren</Text>
             </TouchableOpacity>
           </View>
         ) : (
           <View style={commonStyles.card}>
-            <Text style={commonStyles.subtitle}>Welcome Back!</Text>
+            <Text style={commonStyles.subtitle}>Willkommen zurück!</Text>
             <Text style={commonStyles.textLeft}>
-              You&apos;re connected to the Keys to Freedom community. Choose a channel below to start participating.
+              Du bist mit der Keys to Freedom Community verbunden. Wähle unten einen Kanal aus, um teilzunehmen.
             </Text>
           </View>
         )}
 
         {/* Channels List */}
         <View style={commonStyles.section}>
-          <Text style={commonStyles.subtitle}>Available Channels</Text>
+          <Text style={commonStyles.subtitle}>Verfügbare Kanäle</Text>
           {channels.map((channel, index) => (
             <TouchableOpacity
               key={index}
@@ -125,7 +125,7 @@ export default function ChatScreen() {
                 {channel.description}
               </Text>
               <Text style={[commonStyles.textLeft, { fontSize: 14, color: colors.textLight, marginBottom: 0 }]}>
-                Last activity: {channel.lastMessage}
+                Letzte Aktivität: {channel.lastMessage}
               </Text>
             </TouchableOpacity>
           ))}
@@ -133,13 +133,13 @@ export default function ChatScreen() {
 
         {/* Features Info */}
         <View style={commonStyles.card}>
-          <Text style={commonStyles.subtitle}>Chat Features</Text>
+          <Text style={commonStyles.subtitle}>Chat-Funktionen</Text>
           <View style={{ alignItems: 'flex-start' }}>
-            <Text style={commonStyles.textLeft}>• React to messages with emojis</Text>
-            <Text style={commonStyles.textLeft}>• Read exclusive content from admins</Text>
-            <Text style={commonStyles.textLeft}>• Receive push notifications for new posts</Text>
-            <Text style={commonStyles.textLeft}>• Access to multimedia content (images, videos, audio)</Text>
-            <Text style={commonStyles.textLeft}>• Direct messaging with community leaders</Text>
+            <Text style={commonStyles.textLeft}>• Auf Nachrichten mit Emojis reagieren</Text>
+            <Text style={commonStyles.textLeft}>• Exklusive Inhalte von Admins lesen</Text>
+            <Text style={commonStyles.textLeft}>• Push-Benachrichtigungen für neue Beiträge erhalten</Text>
+            <Text style={commonStyles.textLeft}>• Zugang zu Multimedia-Inhalten (Bilder, Videos, Audio)</Text>
+            <Text style={commonStyles.textLeft}>• Direktnachrichten mit Community-Leitern</Text>
           </View>
         </View>
       </ScrollView>
@@ -151,10 +151,10 @@ export default function ChatScreen() {
       >
         <View style={{ padding: 20 }}>
           <Text style={[commonStyles.subtitle, { marginBottom: 20 }]}>
-            Join Keys to Freedom
+            Keys to Freedom beitreten
           </Text>
           <Text style={[commonStyles.textLeft, { marginBottom: 20 }]}>
-            Enter your email address to sign in or create a new account.
+            Gib deine E-Mail-Adresse ein, um dich anzumelden oder ein neues Konto zu erstellen.
           </Text>
           
           <TextInput
@@ -167,7 +167,7 @@ export default function ChatScreen() {
               marginBottom: 20,
               backgroundColor: colors.backgroundAlt,
             }}
-            placeholder="Enter your email address"
+            placeholder="Gib deine E-Mail-Adresse ein"
             placeholderTextColor={colors.textLight}
             value={email}
             onChangeText={setEmail}
@@ -179,11 +179,11 @@ export default function ChatScreen() {
             style={buttonStyles.primary}
             onPress={handleLogin}
           >
-            <Text style={buttonStyles.text}>Continue</Text>
+            <Text style={buttonStyles.text}>Weiter</Text>
           </TouchableOpacity>
           
           <Text style={[commonStyles.text, { fontSize: 14, marginTop: 15, color: colors.textLight }]}>
-            By continuing, you agree to our Terms of Service and Privacy Policy.
+            Durch Fortfahren stimmst du unseren Nutzungsbedingungen und Datenschutzrichtlinien zu.
           </Text>
         </View>
       </SimpleBottomSheet>

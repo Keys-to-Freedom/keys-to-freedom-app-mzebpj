@@ -10,11 +10,11 @@ const BottomNavigation = () => {
   const pathname = usePathname();
 
   const navItems = [
-    { name: 'Home', icon: 'home', route: '/' },
+    { name: 'Start', icon: 'home', route: '/' },
     { name: 'Chat', icon: 'chatbubbles', route: '/chat' },
     { name: 'Shop', icon: 'storefront', route: '/shop' },
-    { name: 'Media', icon: 'library', route: '/media' },
-    { name: 'Contact', icon: 'mail', route: '/contact' },
+    { name: 'Medien', icon: 'library', route: '/media' },
+    { name: 'Kontakt', icon: 'mail', route: '/contact' },
   ];
 
   return (
